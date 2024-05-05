@@ -1,21 +1,21 @@
 ﻿using FormApp.apicom.models;
+using FormApp.apicom.models.Requests;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace FormApp.apicom;
 
-public class ApiCom
+public class ApiComForStudent
 {
     /*
      API communication class
      */
     string mainapiUrl;
 
-    public ApiCom(string apiurl)
+    public ApiComForStudent(string apiurl)
     {
         this.mainapiUrl = apiurl;
     }
@@ -75,20 +75,18 @@ public class ApiCom
         return returnData;
 
     }
-    public async Task<List<Student>> GetStudents()
+    public async Task<List<GetStudentRequest>> GetStudents()
     {
         //http://localhost:5290/api/Values/getstudents
         string localApiUrl = String.Concat(mainapiUrl, "/Values/getstudents");
         HttpClient client = new HttpClient();
-        List<Student> returnData = new List<Student>();
+        List<GetStudentRequest> dataList = new List<GetStudentRequest>();
         HttpResponseMessage response = await client.GetAsync(localApiUrl);
         if (response.IsSuccessStatusCode) {
             //response başarılı
             string responseData = await response.Content.ReadAsStringAsync();
-            List<Student> dataList = JsonConvert.DeserializeObject<List<Student>>(responseData);
-            foreach (Student student in dataList) {
-                returnData.Add(student);
-            }
+             dataList = JsonConvert.DeserializeObject<List<GetStudentRequest>>(responseData);
+
         }
         else
         {
@@ -97,10 +95,10 @@ public class ApiCom
 
 
         client.Dispose();
-        return returnData;
+        return dataList;
     }
 
-    public async Task<string> AddStudent(Student student) {
+    public async Task<string> AddStudent(AddStudentRequest student) {
         //http://localhost:5290/api/Values/addstudent
         string localApiUrl = String.Concat(mainapiUrl, "/Values/addstudent");
         HttpClient client = new HttpClient();
