@@ -1,5 +1,6 @@
 ﻿using FormApp.apicom;
 using FormApp.apicom.models;
+using FormApp.apicom.models.Requests;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,17 +19,17 @@ namespace FormApp.forms
         {
             InitializeComponent();
         }
-        ApiCom apiCom;
+        ApiComForStudent apiCom;
         private void OrnekVeriEkleModelVeri_Load(object sender, EventArgs e)
         {
-            apiCom = new ApiCom("http://localhost:5290/api");
+            apiCom = new ApiComForStudent("http://localhost:5290/api");
         }
         private async void button1_Click(object sender, EventArgs e)
         {
             string name = textBox2.Text.ToString();
             string surname = textBox3.Text.ToString();
             string email = textBox4.Text.ToString();
-            Student student = new Student() {Name = name,Surname = surname,Email = email};
+            AddStudentRequest student = new AddStudentRequest() {Name = name,Surname = surname,Email = email};
             string sonuc =  await apiCom.AddStudent(student);
             MessageBox.Show(sonuc);
         }

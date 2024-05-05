@@ -1,5 +1,6 @@
 ﻿using FormApp.apicom;
 using FormApp.apicom.models;
+using FormApp.apicom.models.Requests;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,17 +20,17 @@ namespace FormApp.forms
             InitializeComponent();
         }
 
-        ApiCom apiCom;
+        ApiComForStudent apiCom;
         private async void OrnekVeriListeleModelVeri_Load(object sender, EventArgs e)
         {
 
-            apiCom = new ApiCom("http://localhost:5290/api");
+            apiCom = new ApiComForStudent("http://localhost:5290/api");
             update();
         }
         private async void update()
         {
             dataGridView1.DataSource = null;
-            List<Student> data = await apiCom.GetStudents();
+            List<GetStudentRequest> data = await apiCom.GetStudents();
             dataGridView1.DataSource = data;
 
         }

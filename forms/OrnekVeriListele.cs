@@ -17,11 +17,11 @@ namespace FormApp.forms
         {
             InitializeComponent();
         }
-        ApiCom apiCom;
+        ApiComForStudent apiCom;
 
         private void OrnekVeriListele_Load(object sender, EventArgs e)
         {
-            apiCom = new ApiCom("http://localhost:5290/api");
+            apiCom = new ApiComForStudent("http://localhost:5290/api");
         }
 
         private async void button1_Click(object sender, EventArgs e)
