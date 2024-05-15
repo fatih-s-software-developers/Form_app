@@ -26,6 +26,8 @@ public class ApicomForOyuncuKayit
 		// http://localhost:5290/api/OyuncuKayit/TopluKayitEkle
 		string localApiUrl = string.Concat(mainapiUrl, "/OyuncuKayit/TopluKayitEkle");
 		HttpClient client = new HttpClient();
+		//timeout(geçici sonra sil)
+		client.Timeout = TimeSpan.FromSeconds(1000000);
 		string jsonContent = JsonConvert.SerializeObject(kayitlar);
 		var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 		HttpResponseMessage response = await client.PostAsync(localApiUrl, content);
