@@ -138,6 +138,8 @@ public class ExcelOku
 				//bu kısım nasıl daha efektif yazılabilir
 				//MAC EŞ ALANLARI
 				veri.CiftEsAdi = (excelReader.GetValue(12) is not null) ? excelReader.GetValue(12).ToString() : "";
+				veri.CiftMacTercihi = true;
+
 				if (veri.CiftEsAdi == "")
 				{
 					veri.CiftMacTercihi = false;
@@ -147,6 +149,7 @@ public class ExcelOku
 					veri.CiftMacTercihi = false;
 				}
 				veri.KarisikEsAdi = (excelReader.GetValue(13) is not null) ? excelReader.GetValue(13).ToString() : "";
+				veri.KarisikMacTercihi = true;
 
 				if (veri.KarisikEsAdi == "")
 				{
